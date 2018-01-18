@@ -5,16 +5,33 @@
  */
 package com.gmail.asboyo.learn.jdbc;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author St0rm
  */
 public class AplikasiUtama {
+    private final String url = "jdbc:postgresql://localhost:5432/hr";
+    private final String user = "hr";
+    private final String password = "hr";
+    
+    public Connection connect(){
+        Connection conn = null;
+            try {
+                conn = DriverManager.getConnection(url,user,password);
+                System.out.println("Berhasil Connect");
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());;
+            }
+        return conn;
+    }
     public static void main(String[] args) {
-        System.out.println("unga bunga. ini aplikasi maven pertama!");
-        System.out.println("unga bunga. its another line!");
-        for(int i=0;i<11;i++){
-            System.out.print("(*-*)/");
-        }
+        AplikasiUtama ap = new AplikasiUtama();
+        ap.connect();
     }
 }
